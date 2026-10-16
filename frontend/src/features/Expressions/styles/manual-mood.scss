@@ -1,0 +1,51 @@
+.manual-mood-selector {
+  width: 100%;
+  padding-top: 0.25rem;
+  font-family: system-ui, sans-serif;
+
+  .manual-mood-label {
+    margin: 0 0 0.7rem;
+    color: var(--analysis-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .manual-mood-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 0;
+    padding: 0.55rem 0.35rem;
+    border: 1px solid var(--analysis-line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--analysis-ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 800;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--analysis-ink);
+      color: var(--analysis-paper);
+      outline: none;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .manual-mood-selector .manual-mood-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

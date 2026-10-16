@@ -1,0 +1,219 @@
+.discover-page {
+  min-height: 100vh;
+  background: var(--clr-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.discover-inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem clamp(1rem, 4vw, 3rem) 4rem;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+.discover-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.discover-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: var(--clr-gold);
+  opacity: 0;
+}
+
+.discover-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--clr-ink);
+  line-height: 1.1;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.discover-sub {
+  font-size: 1.05rem;
+  color: var(--clr-ink-muted);
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0;
+}
+
+.discover-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+}
+
+  .discover-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2.5rem;
+  background: linear-gradient(135deg, var(--clr-warm-amber), var(--clr-warm-accent));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(42, 107, 71, 0.5);
+    &::after { opacity: 1; }
+  }
+}
+
+.discover-privacy {
+  font-size: 0.75rem;
+  color: rgba(122,144,128,0.6);
+  letter-spacing: 0.03em;
+}
+
+.discover-steps {
+  opacity: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--clr-border);
+}
+
+.steps-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--clr-gold);
+  margin-bottom: 1.25rem;
+}
+
+.journey-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.65rem 0.7rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+  }
+
+  li.is-current {
+    border-color: rgba(212, 163, 115, 0.35);
+    background: rgba(212, 163, 115, 0.06);
+  }
+}
+
+.step-num {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--clr-warm-amber);
+  background: rgba(212, 163, 115, 0.1);
+  border: 1px solid rgba(212, 163, 115, 0.25);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.journey-word {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--clr-ink-muted);
+}
+
+.journey-list .is-current .journey-word {
+  color: var(--clr-ink);
+}
+
+.discover-cheesy-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.cheesy-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition), border-color var(--transition);
+
+  &:hover {
+    transform: translateX(10px);
+    border-color: var(--clr-warm-accent);
+  }
+
+  .cheesy-emoji {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .cheesy-text {
+    font-size: 1.1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--clr-ink);
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 900px) {
+  .discover-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .discover-cheesy-wrap {
+    order: -1;
+    padding: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .discover-inner { padding-top: 6rem; }
+  .journey-list { gap: 0.2rem; }
+  .journey-list li { padding: 0.55rem 0.35rem; }
+  .journey-word { font-size: 0.56rem; letter-spacing: 0.1em; }
+  .step-num { font-size: 0.55rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cheesy-card, .discover-cta { transition: none; }
+}

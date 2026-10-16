@@ -1,0 +1,36 @@
+.music-world {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin: 0 0 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(167, 123, 69, 0.25);
+  border-radius: 4px;
+  background: rgba(246, 243, 235, 0.26);
+  perspective: 900px;
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .world-caption {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 1rem;
+    color: var(--home-brass);
+    font-family: system-ui, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (max-width: 520px) {
+  .music-world { height: 160px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-world { opacity: 0.85; }
+}

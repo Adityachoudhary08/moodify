@@ -1,0 +1,87 @@
+.desired-mood-selector {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 1px solid var(--analysis-line);
+  border-left: 3px solid var(--analysis-brass);
+  background: var(--analysis-paper);
+  color: var(--analysis-ink);
+  font-family: system-ui, sans-serif;
+
+  .desired-kicker {
+    margin: 0 0 0.5rem;
+    color: var(--analysis-brass);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  h2 {
+    margin: 0 0 0.4rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.55rem;
+    font-weight: 500;
+  }
+
+  .desired-current {
+    margin: 0 0 1rem;
+    color: var(--analysis-muted);
+    font-size: 0.82rem;
+  }
+
+  .desired-options {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .desired-options button,
+  .desired-actions button {
+    min-height: 2.5rem;
+    padding: 0.55rem 0.45rem;
+    border: 1px solid var(--analysis-line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--analysis-ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+
+  .desired-options button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    span { font-size: 1.05rem; }
+
+    &:hover,
+    &:focus-visible,
+    &.is-selected {
+      border-color: var(--analysis-brass);
+      background: var(--analysis-brass);
+      color: #fffaf0;
+      outline: none;
+    }
+  }
+
+  .desired-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+
+    button { flex: 1; text-transform: uppercase; letter-spacing: 0.06em; }
+    .desired-submit { background: var(--analysis-ink); color: var(--analysis-paper); }
+    .desired-submit:disabled { cursor: not-allowed; opacity: 0.45; }
+    .desired-skip { color: var(--analysis-muted); }
+  }
+}
+
+@media (max-width: 520px) {
+  .desired-mood-selector .desired-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .desired-mood-selector .desired-actions { flex-direction: column; }
+}

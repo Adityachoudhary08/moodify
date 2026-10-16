@@ -1,0 +1,264 @@
+.face-expression-container {
+  --analysis-ink: #222b27;
+  --analysis-muted: #6f776f;
+  --analysis-paper: #f6f3eb;
+  --analysis-line: #d5d7cd;
+  --analysis-brass: #a77b45;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--analysis-ink);
+
+  .face-heading {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .face-kicker {
+    margin: 0 0 0.65rem;
+    color: var(--analysis-brass);
+    font-family: system-ui, sans-serif;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .face-title {
+    margin: 0 0 0.45rem;
+    color: var(--analysis-ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .face-subtitle {
+    margin: 0;
+    color: var(--analysis-muted);
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .privacy-note {
+    max-width: 42ch;
+    margin: 0.65rem 0 0;
+    color: var(--analysis-muted);
+    font-family: system-ui, sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.45;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #d2d4c9;
+    border: 1px solid #c6c9bd;
+    border-radius: 3px;
+    box-shadow: 6px 7px 0 rgba(34, 43, 39, 0.08);
+
+    video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      filter: saturate(0.7) contrast(0.96);
+      transition: filter 220ms ease;
+
+      &:hover {
+        filter: saturate(0.88) contrast(1);
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(246, 243, 235, 0.3);
+      pointer-events: none;
+    }
+
+    .camera-indicator {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.65rem;
+      background: rgba(34, 43, 39, 0.78);
+      border: 1px solid rgba(246, 243, 235, 0.3);
+      border-radius: 2px;
+      color: #f6f3eb;
+      font-family: system-ui, sans-serif;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+
+      &::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #bd9559;
+        box-shadow: 0 0 0 3px rgba(189, 149, 89, 0.18);
+        animation: camera-pulse 2s ease-in-out infinite;
+      }
+
+      &.is-offline {
+        &::before {
+          background: #ba6954;
+          box-shadow: none;
+          animation: none;
+        }
+      }
+    }
+  }
+
+  .expression-status {
+    width: 100%;
+    padding: 1rem 1.15rem;
+    background: var(--analysis-paper);
+    border: 1px solid var(--analysis-line);
+    border-left: 3px solid var(--analysis-brass);
+    border-radius: 2px;
+    text-align: left;
+
+    .status-label {
+      margin: 0 0 0.45rem;
+      color: var(--analysis-muted);
+      font-family: system-ui, sans-serif;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .expression-text {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0;
+      color: var(--analysis-muted);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+
+      .emoji {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background: #ebe7dc;
+        border: 1px solid #cbc9bb;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        filter: saturate(0.68);
+      }
+
+      &.has-detection {
+        color: var(--analysis-ink);
+        animation: detected-in 420ms ease both;
+      }
+    }
+
+    .playlist-note {
+      margin: 0.65rem 0 0 2.6rem;
+      color: var(--analysis-brass);
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+  }
+
+  .camera-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .detect-button,
+  .camera-toggle {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--analysis-ink);
+    border-radius: 2px;
+    background: var(--analysis-ink);
+    color: #f6f3eb;
+    cursor: pointer;
+    font-family: system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+
+    &:hover:not(:disabled) {
+      background: #39483e;
+      border-color: #39483e;
+      box-shadow: 4px 5px 0 rgba(34, 43, 39, 0.14);
+      transform: translate(-2px, -2px);
+    }
+
+    &:active {
+      box-shadow: none;
+      transform: translate(0, 0);
+    }
+
+    &:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+  }
+
+  .camera-toggle {
+    padding: 0.5rem 1rem;
+    border-color: var(--analysis-line);
+    background: transparent;
+    color: var(--analysis-muted);
+    font-size: 0.66rem;
+
+    &:hover:not(:disabled) {
+      background: var(--analysis-line);
+      border-color: var(--analysis-line);
+      color: var(--analysis-ink);
+      box-shadow: none;
+      transform: none;
+    }
+  }
+}
+
+@keyframes camera-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes detected-in {
+  from { opacity: 0.35; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .face-expression-container {
+    gap: 1rem;
+    .face-heading { padding: 1.1rem 1rem 0; }
+    .face-title { font-size: 2rem; }
+    .expression-status { padding: 0.85rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face-expression-container .camera-indicator::before,
+  .face-expression-container .expression-text.has-detection {
+    animation: none;
+  }
+}

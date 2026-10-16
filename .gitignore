@@ -1,0 +1,59 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+*.local
+*.secret
+*.secrets
+*.credentials
+*.token
+secrets/
+.secrets/
+
+# Dependencies
+node_modules/
+
+# Build and coverage output
+dist/
+build/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Logs and runtime files
+*.log
+logs/
+*.pid
+*.pid.lock
+
+# Local databases and data
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# Certificates, private keys, and credential files
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+credentials.json
+service-account*.json
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak

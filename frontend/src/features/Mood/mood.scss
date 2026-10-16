@@ -1,0 +1,228 @@
+.mood-page {
+  min-height: 100vh;
+  background: var(--clr-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.mood-inner {
+  flex: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 7rem clamp(1rem, 4vw, 3rem) 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.mood-section-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--clr-gold);
+  margin-bottom: 1.25rem;
+}
+
+// ─── CURRENT MOOD ──────────────────────────────────────────────────────────
+
+.mood-current-section {
+  padding: 2rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  background: var(--clr-surface);
+}
+
+.mood-detected-badge {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0;
+}
+
+.mood-detected-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--clr-gold);
+  margin-bottom: 0.3rem;
+}
+
+.mood-detected-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--clr-ink);
+  background: linear-gradient(135deg, var(--clr-ink) 40%, var(--clr-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.mood-detected-confidence {
+  font-size: 0.72rem;
+  color: rgba(122,144,128,0.55);
+  margin-top: 0.3rem;
+}
+
+// ─── DESIRED SECTION ───────────────────────────────────────────────────────
+
+.mood-desired-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mood-transition-text {
+  margin-bottom: 2rem;
+  opacity: 0;
+}
+
+.desired-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--clr-ink);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.desired-sub {
+  font-size: 0.95rem;
+  color: var(--clr-ink-muted);
+  line-height: 1.6;
+}
+
+.desired-mood-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.desired-mood-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 5.8rem;
+  padding: 1rem 1rem 1.1rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  background: var(--clr-surface);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
+  opacity: 0;
+
+  &:hover {
+    border-color: var(--mood-accent, var(--clr-gold));
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  }
+
+  &.is-selected {
+    border-color: var(--mood-accent, var(--clr-gold));
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 0 0 2px var(--mood-accent, var(--clr-gold)), 0 12px 32px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+  }
+}
+
+.desired-emoji {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  font-size: 1.55rem;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(3px) scale(0.88);
+  transition: opacity 140ms ease, transform 140ms ease, visibility 140ms ease;
+}
+
+.desired-mood-option:hover .desired-emoji,
+.desired-mood-option:focus-visible .desired-emoji {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.desired-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--clr-ink-muted);
+  text-align: center;
+  letter-spacing: 0.03em;
+
+  .is-selected & { color: var(--clr-ink); }
+}
+
+.desired-check {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 20px;
+  height: 20px;
+  background: var(--mood-accent, var(--clr-gold));
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+// ─── ACTIONS ────────────────────────────────────────────────────────────────
+
+.mood-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  opacity: 0;
+}
+
+.btn-go {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--clr-warm-amber), var(--clr-warm-accent));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(212, 163, 115, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.btn-keep {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--clr-ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: color var(--transition);
+
+  &:hover:not(:disabled) { color: var(--clr-ink); }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+@media (max-width: 600px) {
+  .mood-detected-badge { flex-direction: column; text-align: center; }
+  .desired-mood-grid { grid-template-columns: repeat(2, 1fr); }
+}
